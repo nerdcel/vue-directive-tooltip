@@ -6,7 +6,7 @@
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.12.3
+ * @version 1.12.5
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -1056,7 +1056,7 @@ var index = {
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.12.3
+ * @version 1.12.5
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -3510,6 +3510,7 @@ var DEFAULT_OPTIONS = {
     instance: null, // the popper.js instance
     eventsEnabled: true,
     html: false,
+    inlineHtml: false,
     modifiers: {
         arrow: {
             element: '.tooltip-arrow'
@@ -3658,8 +3659,8 @@ var Tootlip = function () {
     Tootlip.prototype.content = function content(_content) {
         var wrapper = this.tooltip.popper.querySelector('.tooltip-content');
         if (typeof _content === 'string') {
-            this.tooltip.options.title = _content;
-            wrapper.textContent = _content;
+            wrapper.innerHTML = '';
+            wrapper.appendChild(_content);
         } else if (isElement$1(_content)) {
             if (_content !== wrapper.children[0]) {
                 wrapper.innerHTML = '';

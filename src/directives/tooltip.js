@@ -15,6 +15,7 @@ const DEFAULT_OPTIONS = {
     instance: null, // the popper.js instance
     eventsEnabled: true,
     html: false,
+    inlineHtml: false,
     modifiers: {
         arrow: {
             element: '.tooltip-arrow'
@@ -161,8 +162,8 @@ export default class Tootlip {
     content (content) {
         const wrapper = this.tooltip.popper.querySelector('.tooltip-content');
         if (typeof content === 'string') {
-            this.tooltip.options.title = content;
-            wrapper.textContent = content;
+            wrapper.innerHTML = '';
+            wrapper.appendChild(content);
         } else if (isElement(content)) {
             if (content !== wrapper.children[0]) {
                 wrapper.innerHTML = '';
